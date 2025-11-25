@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Meda Cookie Relay</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 16px;
+      width: 340px;
+      background: #0f1729;
+      color: #e2e8f0;
+    }
+
+    h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #f8fafc;
+      margin: 0 0 4px 0;
+    }
+
+    p.subtitle {
+      font-size: 12px;
+      color: #94a3b8;
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    select,
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      padding: 8px 10px;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    select:focus,
+    textarea:focus,
+    input[type="text"]:focus {
+      border-color: #3b82f6;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+      font-family: monospace;
+      font-size: 11px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      width: 100%;
+      box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: #e2e8f0;
+      flex: 1;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
+      color: white;
+    }
+
+    #status {
+      font-size: 12px;
+      margin-top: 12px;
+      min-height: 20px;
+      padding: 8px;
+      border-radius: 6px;
+      display: none;
+    }
+
+    #status.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    #status.error {
+      display: block;
+      background: rgba(244, 63, 94, 0.1);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.2);
+    }
+
+    details {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid #1e293b;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748b;
+      user-select: none;
+    }
+
+    summary:hover {
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Meda Cookie Relay</h1>
+  <p class="subtitle">
+    Sync your session cookies to MedaBase to enable automated dialing and CRM features.
+  </p>
+
+  <label for="target-select">Integration Target</label>
+  <select id="target-select">
+    <option value="vanillasoft">VanillaSoft</option>
+    <option value="onlysales">OnlySales</option>
+  </select>
+
+  <label for="endpoint-input">API Endpoint</label>
+  <input type="text" id="endpoint-input" placeholder="https://medabase.wecaresolutions.org/api/integrations/cookies" />
+
+  <label for="token-input">Access Token (X-Meda-Token)</label>
+  <input type="text" id="token-input" placeholder="Paste token from MedaBase settings" />
+
+  <div class="btn-row">
+    <button id="push-btn" class="btn-primary">Sync Cookies Now</button>
+  </div>
+
+  <div id="status"></div>
+
+  <details>
+    <summary>Advanced Options</summary>
+    <div style="margin-top: 12px;">
+      <label for="cookie-output">Captured Cookie Header</label>
+      <textarea id="cookie-output" placeholder="Click “Refresh” to see current cookies" readonly></textarea>
+
+      <div class="btn-row">
+        <button id="refresh-btn" class="btn-secondary">Refresh</button>
+        <button id="copy-btn" class="btn-secondary">Copy</button>
+      </div>
+
+      <label for="vs-input">Override VS (optional)</label>
+      <input type="text" id="vs-input" placeholder="VS=..." />
+
+      <label for="vsauth-input">Override .VSAUTH (optional)</label>
+      <input type="text" id="vsauth-input" placeholder=".VSAUTH=..." />
+    </div>
+  </details>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

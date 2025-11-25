@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Meda Cookie Relay",
+  "description": "Grab VanillaSoft and OnlySales cookies from the current Chrome profile and push them to MedaBase.",
+  "version": "0.1.0",
+  "permissions": [
+    "cookies",
+    "storage",
+    "scripting",
+    "activeTab",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://s2.vanillasoft.net/*",
+    "https://*.vanillasoft.net/*",
+    "https://app.onlysales.io/*",
+    "https://*.onlysales.io/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  }
+}
