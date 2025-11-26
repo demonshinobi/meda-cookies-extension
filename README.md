@@ -20,6 +20,10 @@ meda-cookie-extension/
 └── README.md
 ```
 
+## Installation
+
+Download the latest release asset extension-dist.zip and use Chrome ‘Load unpacked’ pointing to the unzipped folder.
+
 ## Local development / testing
 
 1. Run `chrome://extensions` in Chrome.
