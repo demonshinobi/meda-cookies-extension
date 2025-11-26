@@ -12,22 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: npm
-
-      - name: Install deps
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Zip dist
-        run: |
-          cd dist
-          zip -r ../extension-dist.zip .
+      - name: Zip extension files
+        run: zip -r extension-dist.zip . -x ".git/*" ".github/*"
 
       - name: Create release
         uses: softprops/action-gh-release@v2
