@@ -12,8 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Zip extension files
-        run: zip -r extension-dist.zip . -x ".git/*" ".github/*"
+      - name: Zip dist
+        run: |
+          cd dist
+          zip -r ../extension-dist.zip .
 
       - name: Create release
         uses: softprops/action-gh-release@v2
