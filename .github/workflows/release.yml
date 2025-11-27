@@ -12,10 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Zip dist
+      # Create a clean zip of the extension files (no build step needed)
+      - name: Package extension
         run: |
-          cd dist
-          zip -r ../extension-dist.zip .
+          zip -r extension-dist.zip . \
+            -x "*.git*" "*.github*" "*.yml" "*.yaml" "*.md" "*.swp" "*.DS_Store"
 
       - name: Create release
         uses: softprops/action-gh-release@v2
